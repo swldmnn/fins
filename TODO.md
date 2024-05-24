@@ -1,0 +1,3 @@
+- [ ] fileNames sortieren
+- [x] finRecords sortieren
+- [x] Übertrag richtig rausparsen

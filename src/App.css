@@ -1,0 +1,92 @@
+:root {
+  --color-0: #222;
+  --color-1: #353335;
+  --color-contrast-0: cadetblue;
+  --color-header: darkslategray;
+  --color-text: white;
+}
+
+body{
+  background-color: var(--color-0);
+}
+
+.App {
+  background-color: var(--color-0);
+  color: var(--color-text);
+}
+
+.FinsLogo {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.Header {
+  background-color: var(--color-header);
+  color: var(--color-contrast-0);
+  font-size:3rem;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 1rem;
+}
+
+.Logo {
+  margin-right: 0.5rem;
+}
+
+.FileChooserButton {
+  background-color: var(--color-contrast-0);
+  color: var(--color-text);
+  padding: 1rem;
+  font-weight: bold;
+  font-size: medium;
+  border: none;
+  margin: 0.2rem;
+}
+
+.FileChooser {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: max-content;
+  font-size: x-small;
+  text-align: center;
+}
+
+.FileList {
+  background-color: var(--color-1);
+  color: var(--color-text);
+  padding: 1rem;
+  border: none;
+  margin: 0.2rem;
+}
+
+.GlobalSettings {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--color-1);
+  color: var(--color-text);
+  padding: 1rem;
+  border: none;
+  margin: 0.2rem;
+}
+
+.AccountSelector {
+  color: black;
+  width: 20em;
+}
+
+.Bumper {
+  margin: 1em;
+}
+
+.hidden {
+  display: none;
+}
+
+table, th, td {
+  border: 1px solid var(--color-text);
+}
+
+table {
+  border-collapse: collapse;
+}
