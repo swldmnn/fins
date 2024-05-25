@@ -15,6 +15,15 @@ body{
   color: var(--color-text);
 }
 
+.Card {
+  background-color: var(--color-1);
+  color: var(--color-text);
+  padding: 1rem;
+  border: none;
+  margin: 0.3rem;
+  border-radius: 15px;
+}
+
 .FinsLogo {
   height: 2.4rem;
   width: 2.4rem;
@@ -29,6 +38,14 @@ body{
   padding: 1rem;
 }
 
+.CardTitle {
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 1rem;
+  font-size: larger;
+  font-weight: bold;
+  color: var(--color-contrast-0);
+}
+
 .Logo {
   margin-right: 0.5rem;
 }
@@ -41,6 +58,7 @@ body{
   font-size: medium;
   border: none;
   margin: 0.2rem;
+  border-radius: 5px;
 }
 
 .FileChooser {
@@ -52,22 +70,9 @@ body{
   text-align: center;
 }
 
-.FileList {
-  background-color: var(--color-1);
-  color: var(--color-text);
-  padding: 1rem;
-  border: none;
-  margin: 0.2rem;
-}
-
 .GlobalSettings {
   display: flex;
   flex-direction: row;
-  background-color: var(--color-1);
-  color: var(--color-text);
-  padding: 1rem;
-  border: none;
-  margin: 0.2rem;
 }
 
 .AccountSelector {
@@ -85,6 +90,11 @@ body{
 
 table, th, td {
   border: 1px solid var(--color-text);
+}
+
+td {
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 
 table {

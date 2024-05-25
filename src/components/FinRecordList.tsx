@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { AppContext } from '../app-context';
 import { getColorByCategory } from '../utils/categoryUtil';
 import { useTranslation } from 'react-i18next';
-import { use } from 'i18next';
 
 const FinRecordList = () => {
     const {t} = useTranslation();
@@ -12,7 +11,7 @@ const FinRecordList = () => {
     .map(finRecord => finRecord.amount)
     .reduce((acc, next) => {return acc + next}, 0)
 
-    return <div className="FileList">
+    return <div>
         <div>
             <span>{t('total_amount')}: {total_amount}</span>
         </div>

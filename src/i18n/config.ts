@@ -28,7 +28,9 @@ i18n
           total_amount: "Total",
           open_files: "Open files",
           opened: "opened",
-          no_time_range: "no time range available"
+          no_time_range: "no time range available",
+          title_options: "Options",
+          title_records: "Transactions"
         },
       },
       de: {
@@ -48,7 +50,9 @@ i18n
             total_amount: "Summe",
             open_files: "Dateien öffnen",
             opened: "geöffnet",
-            no_time_range: "keine Datumsinformationen geladen"
+            no_time_range: "keine Datumsinformationen geladen",
+            title_options: "Optionen",
+            title_records: "Buchungen"
         },
       },
     },

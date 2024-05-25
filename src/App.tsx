@@ -1,17 +1,24 @@
-import React from 'react';
 import './App.css';
 import Header from './components/Header';
-import FileList from './components/FileList';
 import FinRecordList from './components/FinRecordList';
 import GlobalSettings from './components/GlobalSettings';
 import "./i18n/config";
+import Card from './components/Card';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+const {t} = useTranslation()
+
   return (
     <div className="App">
       <Header></Header>
-      <GlobalSettings></GlobalSettings>
-      <FinRecordList></FinRecordList>
+      <Card title={t('title_options')}>
+        <GlobalSettings></GlobalSettings> 
+      </Card>
+      <Card title={t('title_records')}>
+        <FinRecordList></FinRecordList>
+      </Card>
+      
     </div>
   );
 }
