@@ -7,18 +7,20 @@ import Card from './components/Card';
 import { useTranslation } from 'react-i18next';
 
 function App() {
-const {t} = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <div className="App">
       <Header></Header>
       <Card title={t('title_options')}>
-        <GlobalSettings></GlobalSettings> 
+        <GlobalSettings></GlobalSettings>
       </Card>
-      <Card title={t('title_records')}>
-        <FinRecordList></FinRecordList>
+      <Card title={t('title_records')} showFilters={true}>
+        <FinRecordList finRecords={[]}></FinRecordList>
       </Card>
-      
+      <Card title={t('title_records')} showFilters={true}>
+        <FinRecordList finRecords={[]}></FinRecordList>
+      </Card>
     </div>
   );
 }

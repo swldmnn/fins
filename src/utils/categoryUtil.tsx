@@ -22,3 +22,7 @@ export function getCategoryAndSource(recordText: string): { category: string, so
 export function getColorByCategory(categoryId: string): string | undefined {
     return config.categories.find(category => category.id === categoryId)?.color
 }
+
+export function getCategoryIds(): string[] {
+    return config.categories.map(category => category.id)
+}

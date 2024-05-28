@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import { AppContext } from '../app-context';
 import { getColorByCategory } from '../utils/categoryUtil';
 import { useTranslation } from 'react-i18next';
+import { PropsWithFinRecords } from './Card';
 
-const FinRecordList = () => {
+const FinRecordList:FunctionComponent<PropsWithFinRecords> = (props) => {
     const {t} = useTranslation();
-    const { state, updateState } = useContext(AppContext)
 
-    const total_amount = state?.filteredFinRecords
+    const total_amount = props.finRecords
     .map(finRecord => finRecord.amount)
     .reduce((acc, next) => {return acc + next}, 0)
 
@@ -17,7 +17,7 @@ const FinRecordList = () => {
         </div>
         <table>
             <tbody>
-                {state?.filteredFinRecords.map((finRecord, i) => {
+                {props.finRecords.map((finRecord, i) => {
                     return <tr key={i}>
                         <td>{finRecord.amount.toString()}</td>
                         <td>{finRecord.date.toDateString()}</td>

@@ -1,31 +1,27 @@
 import { useContext } from 'react';
 import { AppContext } from '../app-context';
 import { MultiSelect, Option } from 'react-multi-select-component';
+import MultiSelection from './MultiSelection';
 
 const AccountSelector = () => {
     const { state, updateState } = useContext(AppContext)
 
-    const onChange = (selectedOptions: Option[]) => {
+    const onChange = (selectedValues: string[]) => {
         if (state) {
-            state.selectedAccounts = selectedOptions.map(option => option.value)
+            state.selectedAccounts = selectedValues
             updateState({ state })
         }
     }
 
-    const options: Option[] = [...new Set(state?.finRecords.map(finRecord => finRecord.account) ?? [])]
-        .map(account => { return { label: account, value: account } as Option });
+    const accounts: string[] = [...new Set(state?.finRecords.map(finRecord => finRecord.account) ?? [])]
 
-    const selectedOptions: Option[] = state?.selectedAccounts
-        .map(account => { return { label: account, value: account } as Option }) ?? []
+    const selectedAccounts: string[] = state?.selectedAccounts ?? []
 
-    return <div className="AccountSelector">
-        <MultiSelect
-            options={options}
-            value={selectedOptions}
-            onChange={onChange}
-            labelledBy="Select"
-        />
-    </div>
+    return <MultiSelection
+        values={accounts}
+        selectedValues={selectedAccounts}
+        onChange={onChange}
+    />
 }
 
 export default AccountSelector;
