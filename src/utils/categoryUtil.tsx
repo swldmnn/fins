@@ -7,7 +7,7 @@ export function getCategoryAndSource(recordText: string): { category: string, so
 
     config.categories.some(cat => {
         return cat.transfer_sources.find(transferSource => {
-            if (transferSource.key_phrases.find(keyPhrase => {return recordText.indexOf(keyPhrase) >= 0}) !== undefined) {
+            if (transferSource.key_phrases.find(keyPhrase => { return recordText.indexOf(keyPhrase) >= 0 }) !== undefined) {
                 source = transferSource.name
                 category = cat.id
                 return true
@@ -24,5 +24,13 @@ export function getColorByCategory(categoryId: string): string | undefined {
 }
 
 export function getCategoryIds(): string[] {
-    return config.categories.map(category => category.id)
+    return config.categories.map(category => category.id).sort()
+}
+
+export function getSourcesByCategories(categories: string[]): string[] {
+    return config.categories
+        .filter(category => categories.includes(category.id))
+        .flatMap(category => category.transfer_sources)
+        .map(transferSource => transferSource.name)
+        .sort()
 }

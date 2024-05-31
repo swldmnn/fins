@@ -1,4 +1,4 @@
-import i18n from "i18next";                      
+import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 i18n
@@ -30,29 +30,33 @@ i18n
           opened: "opened",
           no_time_range: "no time range available",
           title_options: "Options",
-          title_records: "Transactions"
+          title_records: "Transactions",
+          credit: "Credit",
+          debit: "Debit",
         },
       },
       de: {
         translation: {
-            cat_salary: "Gehalt",
-            cat_savings: "Sparen",
-            cat_account_savings: "Kontosparen",
-            cat_debt: "Schulden",
-            cat_living: "Lebenshaltung",
-            cat_housing: "Nebenkosten",
-            cat_kids: "Kinder",
-            cat_insurance: "Versicherungen",
-            cat_car: "Auto",
-            cat_communication: "Kommunikation",
-            cat_various: "Sonstiges",
-            cat_unknown: "Nicht zugeordnet",
-            total_amount: "Summe",
-            open_files: "Dateien öffnen",
-            opened: "geöffnet",
-            no_time_range: "keine Datumsinformationen geladen",
-            title_options: "Optionen",
-            title_records: "Buchungen"
+          cat_salary: "Gehalt",
+          cat_savings: "Sparen",
+          cat_account_savings: "Kontosparen",
+          cat_debt: "Schulden",
+          cat_living: "Lebenshaltung",
+          cat_housing: "Nebenkosten",
+          cat_kids: "Kinder",
+          cat_insurance: "Versicherungen",
+          cat_car: "Auto",
+          cat_communication: "Kommunikation",
+          cat_various: "Sonstiges",
+          cat_unknown: "Nicht zugeordnet",
+          total_amount: "Summe",
+          open_files: "Dateien öffnen",
+          opened: "geöffnet",
+          no_time_range: "keine Datumsinformationen geladen",
+          title_options: "Optionen",
+          title_records: "Buchungen",
+          credit: "Gutschrift",
+          debit: "Lastschrift",
         },
       },
     },
