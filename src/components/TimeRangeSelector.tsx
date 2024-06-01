@@ -22,9 +22,9 @@ const TimeRangeSelector = () => {
     }
 
     const start = state?.timeRange.start
-    const selectedStart =state?.timeRange.selectedStart ?? state?.timeRange.start
+    const selectedStart = state?.timeRange.selectedStart ?? state?.timeRange.start
     const end = state?.timeRange.end
-    const selectedEnd =state?.timeRange.selectedEnd ?? state?.timeRange.end
+    const selectedEnd = state?.timeRange.selectedEnd ?? state?.timeRange.end
 
     return (
         <div>

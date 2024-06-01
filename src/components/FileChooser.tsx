@@ -28,15 +28,14 @@ const FileChooser = () => {
     for (const file of event?.currentTarget?.files ?? []) {
       if (file.name.endsWith('.pdf')) {
         files.push(file)
-        finRecords.push(...await parser.parse(file))  
-      }  
+        finRecords.push(...await parser.parse(file))
+      }
     }
-    //finRecords.push(...await parser.parse(files[0]))
 
     if (state) {
       const sortedRecords = finRecords.sort((finRecord1, finRecord2) => {
         if (finRecord1.date === finRecord2.date) return 0
-        if(finRecord1.date < finRecord2.date) return -1
+        if (finRecord1.date < finRecord2.date) return -1
         return 1
       })
 
@@ -45,7 +44,9 @@ const FileChooser = () => {
       state.files = files
       state.finRecords = sortedRecords
       state.timeRange.start = sortedRecords.at(0)?.date
+      state.timeRange.selectedStart = sortedRecords.at(0)?.date
       state.timeRange.end = sortedRecords.at(-1)?.date
+      state.timeRange.selectedEnd = sortedRecords.at(-1)?.date
       state.selectedAccounts = accounts
     }
 

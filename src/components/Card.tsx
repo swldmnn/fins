@@ -12,7 +12,8 @@ enum TransactionType {
 interface FinRecordFilters {
     categories: string[],
     transferSources: string[],
-    transactionTypes: TransactionType[]
+    transactionTypes: TransactionType[],
+    amountLimit: number,
 }
 
 interface CardProps extends React.PropsWithChildren {
@@ -28,7 +29,7 @@ export interface PropsWithFinRecords extends React.PropsWithChildren {
 const Card: FunctionComponent<CardProps> = (props) => {
 
     const { state, updateState } = useContext(AppContext)
-    const [filters, updateFilters] = useState(props.filterPresets ?? { categories: [], transferSources: [], transactionTypes: [] })
+    const [filters, updateFilters] = useState(props.filterPresets ?? { categories: [], transferSources: [], transactionTypes: [], amountLimit: 0 })
 
     const onCategoryChange = (selectedCategories: string[]) => {
         updateFilters(prevFilters => ({
@@ -50,9 +51,25 @@ const Card: FunctionComponent<CardProps> = (props) => {
         }))
     }
 
-    const filteredFinRecords = filters.categories.length
-        ? state?.filteredFinRecords.filter(finRecord => filters.categories.includes(finRecord.category))
-        : state?.filteredFinRecords
+    const onAmountLimitChange = (amountLimit: number) => {
+        updateFilters(prevFilters => ({
+            ...prevFilters, amountLimit
+        }))
+    }
+
+    const matchesTransactionTypes = (finRecord: FinRecord, transactionTypes: TransactionType[]): boolean => {
+        const transactionType = finRecord.amount >= 0
+            ? TransactionType.credit
+            : TransactionType.debit
+
+        return !transactionTypes.length || transactionTypes.includes(transactionType)
+    }
+
+    const filteredFinRecords = state?.filteredFinRecords
+        .filter(finRecord => matchesTransactionTypes(finRecord, filters.transactionTypes))
+        .filter(finRecord => !filters.categories.length || filters.categories.includes(finRecord.category))
+        .filter(finRecord => !filters.transferSources.length || (finRecord.source && filters.transferSources.includes(finRecord.source)))
+        .filter(finRecord => Math.abs(finRecord.amount) >= filters.amountLimit)
 
     const childrenWithFinRecoreds = React.Children.map(props.children, child => {
         if (React.isValidElement<PropsWithFinRecords>(child)) {
@@ -62,25 +79,33 @@ const Card: FunctionComponent<CardProps> = (props) => {
     });
 
     return <div className="Card">
-        {props.title && <div className='CardTitle'>{props.title}</div>}
-        {props.showFilters && <div>
-            <MultiSelection
-                values={getCategoryIds()}
-                selectedValues={filters.categories}
-                onChange={(selectedFilters) => onCategoryChange(selectedFilters)}
-                translateLabels={true} />
+        <div className='CardHeader'>
+            {props.title && <div className='CardTitle'>{props.title}</div>}
+            {props.showFilters && <div className='CardFilters'>
+                <MultiSelection
+                    values={Object.values(TransactionType).map(type => type.toString()).filter(value => isNaN(Number(value)))}
+                    selectedValues={filters.transactionTypes.map(type => type.toString())}
+                    onChange={(selectedFilters) => onTransactionTypeChange(selectedFilters)}
+                    translateLabels={true} />
 
-            <MultiSelection
-                values={getSourcesByCategories(filters.categories)}
-                selectedValues={filters.transferSources}
-                onChange={(selectedFilters) => onTransferSourceChange(selectedFilters)} />
+                <MultiSelection
+                    values={getCategoryIds()}
+                    selectedValues={filters.categories}
+                    onChange={(selectedFilters) => onCategoryChange(selectedFilters)}
+                    translateLabels={true} />
 
-            <MultiSelection
-                values={Object.values(TransactionType).map(type => type.toString()).filter(value => isNaN(Number(value)))}
-                selectedValues={filters.transactionTypes.map(type => type.toString())}
-                onChange={(selectedFilters) => onTransactionTypeChange(selectedFilters)}
-                translateLabels={true} />
-        </div>}
+                <MultiSelection
+                    values={getSourcesByCategories(filters.categories)}
+                    selectedValues={filters.transferSources}
+                    onChange={(selectedFilters) => onTransferSourceChange(selectedFilters)} />
+
+                <input
+                    type='number' min={0}
+                    value={filters.amountLimit}
+                    onChange={(e) => onAmountLimitChange(Number(e.target.value))} />
+
+            </div>}
+        </div>
         {childrenWithFinRecoreds}
     </div>
 }

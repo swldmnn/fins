@@ -4,10 +4,10 @@ import FinsLogo from './FinsLogo';
 
 function Header() {
   return (
-      <header className="Header">
-        <FinsLogo></FinsLogo>
-        <span>FINS</span>
-      </header>
+    <header className="Header">
+      <FinsLogo></FinsLogo>
+      <span>FINS</span>
+    </header>
   );
 }
 

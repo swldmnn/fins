@@ -4,6 +4,8 @@
   --color-contrast-0: cadetblue;
   --color-header: darkslategray;
   --color-text: white;
+  --color-income: lime;
+  --color-expense: red;
 }
 
 body{
@@ -15,6 +17,11 @@ body{
   color: var(--color-text);
 }
 
+.TableHeaderRow {
+  background-color: var(--color-header);
+  font-weight: bold;
+}
+
 .Card {
   background-color: var(--color-1);
   color: var(--color-text);
@@ -22,6 +29,15 @@ body{
   border: none;
   margin: 0.3rem;
   border-radius: 5px;
+}
+
+.CardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CardFilters {
+  display: flex;
 }
 
 .FinsLogo {
@@ -77,7 +93,7 @@ body{
 
 .MultiSelection {
   color: black;
-  width: 20em;
+  width: 10em;
 }
 
 .Bumper {

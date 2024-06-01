@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 
 const FinsLogo = () => {
-    return <svg xmlns="http://www.w3.org/2000/svg"
-    width="2.66667in" height="2.66667in" className="FinsLogo" 
+  return <svg xmlns="http://www.w3.org/2000/svg"
+    width="2.66667in" height="2.66667in" className="FinsLogo"
     viewBox="0 0 800 650">
- <path id="Selection"
-       fill="currentColor" stroke="none" strokeWidth="1"
-       d="M 102.00,113.00
+    <path id="Selection"
+      fill="currentColor" stroke="none" strokeWidth="1"
+      d="M 102.00,113.00
           C 107.31,106.19 120.49,97.65 128.00,92.67
             150.67,77.62 180.28,63.66 206.00,54.66
             246.02,40.64 282.87,31.88 325.00,26.85
@@ -188,7 +188,7 @@ const FinsLogo = () => {
             135.31,661.53 66.74,619.00 45.52,556.00
             42.69,547.60 38.02,530.52 38.00,522.00
             38.00,522.00 38.00,486.00 38.00,486.00 Z" />
-</svg>
+  </svg>
 }
 
 export default FinsLogo;
