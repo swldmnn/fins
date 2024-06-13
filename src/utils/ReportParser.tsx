@@ -57,7 +57,6 @@ export class VrPdfParser implements RecordParser {
             }
         })
 
-        console.log(`finished parsing ${file.name}`)
         return transactions
     }
 

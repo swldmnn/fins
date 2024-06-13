@@ -67,12 +67,14 @@ const FinRecordCategoryTable: FunctionComponent<PropsWithFinRecords> = (props) =
     return <div>
         <table>
             <thead className='TableHeaderRow'>
-                <td>{t('header_category')}</td>
-                <td>{t('header_income_total')}</td>
-                <td>{t('header_income_avg')} {monthCount}</td>
-                <td>{t('header_expense_total')}</td>
-                <td>{t('header_expense_avg')} {monthCount}</td>
-                <td>{t('header_difference')}</td>
+                <tr>
+                    <td>{t('header_category')}</td>
+                    <td>{t('header_income_total')}</td>
+                    <td>{t('header_income_avg')} {monthCount}</td>
+                    <td>{t('header_expense_total')}</td>
+                    <td>{t('header_expense_avg')} {monthCount}</td>
+                    <td>{t('header_difference')}</td>
+                </tr>
             </thead>
             <tbody>
                 {tableItems.map((tableItem, i) => {
