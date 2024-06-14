@@ -80,7 +80,7 @@ const Card: FunctionComponent<CardProps> = (props) => {
 
     return <div className="Card">
         <div className='CardHeader'>
-            {props.title && <div className='CardTitle'>{props.title}</div>}
+            {props.title && <div><h1>{props.title}</h1></div>}
             {props.showFilters && <div className='CardFilters'>
                 <MultiSelection
                     values={Object.values(TransactionType).map(type => type.toString()).filter(value => isNaN(Number(value)))}

@@ -27,6 +27,13 @@ body{
   background: rgba(10, 10, 10, .7);
 }
 
+.landingBox {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  padding: 5rem;
+}
+
 .LoadingIndicator {
   position: absolute;
   top: 50%;
@@ -75,10 +82,36 @@ body{
   padding: 1rem;
 }
 
-.CardTitle {
+.landingHeader {
+  color: var(--color-contrast-0);
+  font-size:3rem;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 1rem;
+}
+
+h1 {
   font-family: 'Times New Roman', Times, serif;
   margin-bottom: 1rem;
   font-size: larger;
+  font-weight: bold;
+  color: var(--color-contrast-0);
+}
+
+h2 {
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 1rem;
+  font-size: large;
+  font-weight: bold;
+  color: var(--color-contrast-0);
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0 !important;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 1rem;
+  font-size: medium;
   font-weight: bold;
   color: var(--color-contrast-0);
 }
