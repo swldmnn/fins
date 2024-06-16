@@ -17,19 +17,6 @@ function App() {
 
   return (
     <div className="App">
-      {state!.finRecords.length > 0 && (
-        <div>
-          <Header />
-          <Card title={t('title_options')}>
-            <GlobalSettings></GlobalSettings>
-          </Card>
-          <Card title={t('title_category_table')} showFilters={false}>
-            <FinRecordCategoryTable finRecords={[]} />
-          </Card>
-          <Card title={t('title_records')} showFilters={true}>
-            <FinRecordList finRecords={[]}></FinRecordList>
-          </Card>
-        </div>)}
       {state?.finRecords.length === 0 && (
         <div>
           <div className='landingBox'>
@@ -42,6 +29,24 @@ function App() {
                 <FileChooser></FileChooser>
               </Card>
             </div>
+          </div>
+        </div>)}
+      {state!.finRecords.length > 0 && (
+        <div>
+          <Header />
+          <Card title={t('title_options')}>
+            <GlobalSettings></GlobalSettings>
+          </Card>
+          <div className='cardBox'>
+            <Card title={t('title_category_table')} showFilters={false}>
+              <FinRecordCategoryTable finRecords={[]} />
+            </Card>
+            <Card title={t('title_category_table')} showFilters={false}>
+              <FinRecordCategoryTable finRecords={[]} />
+            </Card>
+            <Card title={t('title_records')} showFilters={true}>
+              <FinRecordList finRecords={[]}></FinRecordList>
+            </Card>
           </div>
         </div>)}
     </div>
