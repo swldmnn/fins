@@ -10,6 +10,7 @@ import { useContext } from 'react';
 import { AppContext } from './app-context';
 import FileChooser from './components/FileChooser';
 import FinsLogo from './components/FinsLogo';
+import FinRecordCategoryPieChart from './components/FinRecordCategoryPieChart';
 
 function App() {
   const { t } = useTranslation()
@@ -41,8 +42,8 @@ function App() {
             <Card title={t('title_category_table')} showFilters={false}>
               <FinRecordCategoryTable finRecords={[]} />
             </Card>
-            <Card title={t('title_category_table')} showFilters={false}>
-              <FinRecordCategoryTable finRecords={[]} />
+            <Card title={t('title_category_pie')} showFilters={false}>
+              <FinRecordCategoryPieChart finRecords={[]} />
             </Card>
             <Card title={t('title_records')} showFilters={true}>
               <FinRecordList finRecords={[]}></FinRecordList>
