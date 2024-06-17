@@ -4,8 +4,8 @@
   --color-contrast-0: cadetblue;
   --color-header: darkslategray;
   --color-text: white;
-  --color-income: lime;
-  --color-expense: red;
+  --color-income: #A1DD70;
+  --color-expense: #EE4E4E;
 }
 
 body{

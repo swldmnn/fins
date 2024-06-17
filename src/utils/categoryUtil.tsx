@@ -7,7 +7,7 @@ export function getCategoryAndSource(recordText: string): { category: string, so
 
     config.categories.some(cat => {
         return cat.transfer_sources.find(transferSource => {
-            if (transferSource.key_phrases.find(keyPhrase => { return recordText.indexOf(keyPhrase) >= 0 }) !== undefined) {
+            if (transferSource.key_phrases.find(keyPhrase => { return recordText.toLowerCase().indexOf(keyPhrase.toLowerCase()) >= 0 }) !== undefined) {
                 source = transferSource.name
                 category = cat.id
                 return true

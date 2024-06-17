@@ -27,7 +27,7 @@ const FinRecordList: FunctionComponent<PropsWithFinRecords> = (props) => {
                         <td>{finRecord.account}</td>
                         <td>{finRecord.description}</td>
                         <td>{finRecord.classification}</td>
-                        <td style={{ backgroundColor: getColorByCategory(finRecord.category), color: 'black' }}>{finRecord.source}</td>
+                        <td style={{ backgroundColor: getColorByCategory(finRecord.category), color: 'black' }}>{finRecord.source ?? t(finRecord.category)}</td>
                     </tr>
                 })}
             </tbody>

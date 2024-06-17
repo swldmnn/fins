@@ -69,11 +69,11 @@ const FinRecordCategoryTable: FunctionComponent<PropsWithFinRecords> = (props) =
             <thead className='TableHeaderRow'>
                 <tr>
                     <td>{t('header_category')}</td>
-                    <td>{t('header_income_total')}</td>
+                    <td style={{paddingRight: '6rem'}}>{t('header_income_total')}</td>
                     <td>{t('header_income_avg')} {monthCount}</td>
-                    <td>{t('header_expense_total')}</td>
+                    <td style={{paddingRight: '6rem'}}>{t('header_expense_total')}</td>
                     <td>{t('header_expense_avg')} {monthCount}</td>
-                    <td>{t('header_difference')}</td>
+                    <td style={{paddingRight: '6rem'}}>{t('header_difference')}</td>
                 </tr>
             </thead>
             <tbody>
