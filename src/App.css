@@ -6,6 +6,7 @@
   --color-text: white;
   --color-income: #A1DD70;
   --color-expense: #EE4E4E;
+  --color-invert-0: #eeeeee
 }
 
 body{
@@ -32,6 +33,13 @@ body{
   justify-content: center; 
   align-items: center;
   padding: 5rem;
+}
+
+.custom-tooltip {
+  background-color: var(--color-invert-0);
+  color: var(--color-0);
+  padding: 0.3rem;
+  border-radius: 5px;
 }
 
 .cardBox {

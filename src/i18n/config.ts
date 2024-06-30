@@ -47,6 +47,8 @@ i18n
           header_expense_avg: "⌀",
           header_difference: "Difference",
           item_count: "#",
+          expenses: "Expenses",
+          incomes: "Incomes"
         },
       },
       de: {
@@ -85,6 +87,8 @@ i18n
           header_expense_avg: "⌀",
           header_difference: "Differenz",
           item_count: "#",
+          expenses: "Ausgaben",
+          incomes: "Einnahmen"
         },
       },
     },
