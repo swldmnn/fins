@@ -9,7 +9,7 @@
   --color-invert-0: #eeeeee
 }
 
-body{
+body {
   background-color: var(--color-0);
 }
 
@@ -29,8 +29,8 @@ body{
 }
 
 .landingBox {
-  display: flex; 
-  justify-content: center; 
+  display: flex;
+  justify-content: center;
   align-items: center;
   padding: 5rem;
 }
@@ -89,7 +89,7 @@ body{
 .Header {
   background-color: var(--color-header);
   color: var(--color-contrast-0);
-  font-size:3rem;
+  font-size: 3rem;
   font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
   padding: 1rem;
@@ -97,7 +97,7 @@ body{
 
 .landingHeader {
   color: var(--color-contrast-0);
-  font-size:3rem;
+  font-size: 3rem;
   font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
   padding: 1rem;
@@ -171,7 +171,9 @@ h3 {
   display: none;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid var(--color-text);
 }
 

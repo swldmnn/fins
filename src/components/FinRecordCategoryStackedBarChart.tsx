@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { getCategoryIds, getColorByCategory } from '../utils/categoryUtil';
 import { AppContext } from '../app-context';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
-import { formatNumber } from '../utils/numberUtil';
+import CustomTooltip from './CustomTooltip';
 
 interface ChartItem {
     name: string,
@@ -25,20 +25,6 @@ const FinRecordCategoryStackedBarChart: FunctionComponent<PropsWithFinRecords> =
         return Math.abs(total)
     }
 
-    const CustomTooltip = ({ active, payload, label }: any) => {
-        if (active && payload && payload.length) {
-            const value = formatNumber(payload[0].payload[payload[0].dataKey])
-
-            return (
-                <div className="custom-tooltip" style={{ border: `3px solid ${payload[0].color}` }}>
-                    <p>{`${payload[0].dataKey}: ${value}`}</p>
-                </div>
-            );
-        }
-
-        return null;
-    };
-
     const incomesItem: ChartItem = { name: t('incomes') }
     const expensesItem: ChartItem = { name: t('expenses') }
 
@@ -51,7 +37,7 @@ const FinRecordCategoryStackedBarChart: FunctionComponent<PropsWithFinRecords> =
             return recordMap
         }, new Map<string, FinRecord[]>())
         .forEach((finRecords, category) => {
-            expensesItem[t(category)] = (getAbsAmount(finRecords))
+            expensesItem[category] = (getAbsAmount(finRecords))
         })
 
     props.finRecords
@@ -63,7 +49,7 @@ const FinRecordCategoryStackedBarChart: FunctionComponent<PropsWithFinRecords> =
             return recordMap
         }, new Map<string, FinRecord[]>())
         .forEach((finRecords, category) => {
-            incomesItem[t(category)] = (getAbsAmount(finRecords))
+            incomesItem[category] = (getAbsAmount(finRecords))
         })
 
     return <BarChart
@@ -83,7 +69,7 @@ const FinRecordCategoryStackedBarChart: FunctionComponent<PropsWithFinRecords> =
         <Tooltip content={<CustomTooltip />} shared={false} />
         {
             getCategoryIds().map(id => {
-                return <Bar dataKey={t(id)} stackId="a" fill={getColorByCategory(id)} />
+                return <Bar dataKey={id} stackId="a" fill={getColorByCategory(id)} key={`bar_${id}`} />
             })
         }
     </BarChart>

@@ -11,6 +11,7 @@ import { AppContext } from './app-context';
 import FileChooser from './components/FileChooser';
 import FinsLogo from './components/FinsLogo';
 import FinRecordCategoryStackedBarChart from './components/FinRecordCategoryStackedBarChart';
+import FinRecordCategoryLineChart from './components/FinRecordCategoryLineChart';
 
 function App() {
   const { t } = useTranslation()
@@ -42,12 +43,19 @@ function App() {
             <Card title={t('title_category_table')} showFilters={false}>
               <FinRecordCategoryTable finRecords={[]} />
             </Card>
-            <Card title={t('title_category_pie')} showFilters={false}>
+            <Card title={t('title_category_stack')} showFilters={false}>
               <FinRecordCategoryStackedBarChart finRecords={[]} />
             </Card>
-            <Card title={t('title_records')} showFilters={true}>
-              <FinRecordList finRecords={[]}></FinRecordList>
-            </Card>
+            <div style={{ width: '100%' }}>
+              <Card title={t('title_category_line')} showFilters={true}>
+                <FinRecordCategoryLineChart finRecords={[]} />
+              </Card>
+            </div>
+            <div style={{ width: '100%' }}>
+              <Card title={t('title_records')} showFilters={true}>
+                <FinRecordList finRecords={[]}></FinRecordList>
+              </Card>
+            </div>
           </div>
         </div>)}
     </div>
