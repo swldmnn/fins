@@ -90,7 +90,7 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
             </ToggleButton>
         </ToggleButtonGroup>
 
-        <FormControl sx={{ m: 1, width: 200 }} size='small'>
+        <FormControl sx={{ m: 1, width: 200, marginTop: 0 }} size='small'>
             <InputLabel id="filter-category-label">{t('select_category')}</InputLabel>
             <Select
                 labelId="filter-category-select-label"
@@ -111,7 +111,7 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
             </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: 200 }} size='small' disabled={!filters.categories.length}>
+        <FormControl sx={{ m: 1, width: 200, marginTop: 0 }} size='small' disabled={!filters.categories.length}>
             <InputLabel id="filter-transaction-source-label">{t('select_source')}</InputLabel>
             <Select
                 labelId="filter-transaction-source-select-label"
@@ -132,7 +132,7 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
             </Select>
         </FormControl>
 
-        <Slider sx={{ width: 100, margin: '8px' }}
+        <Slider sx={{ width: 100, marginLeft: '1rem' }}
             getAriaLabel={() => 'Temperature range'}
             value={filters.amountLimit}
             onChange={onAmountLimitChange}

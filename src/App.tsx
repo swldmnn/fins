@@ -21,19 +21,13 @@ function App() {
   return (
     <Box sx={{ bgcolor: 'background.default' }}>
       {state?.finRecords.length === 0 && (
-        <div>
-          <div className='landingBox'>
-            <div style={{ display: 'inline-block' }}>
-              <div className="landingHeader">
-                <FinsLogo sx={{ width: '2.4rem', height: '2.4rem' }}></FinsLogo>
-                <span>FINS</span>
-              </div>
-              <FinsCard>
-                <FileChooser showFileCount={false}></FileChooser>
-              </FinsCard>
-            </div>
-          </div>
-        </div>)}
+        <div className='landingBox'>
+          <FinsLogo sx={{ width: '10rem', height: '3rem' }} color='primary'></FinsLogo>
+          <FinsCard>
+            <FileChooser showFileCount={false}></FileChooser>
+          </FinsCard>
+        </div>
+      )}
       {state!.finRecords.length > 0 && (
         <div>
           <Header />

@@ -35,7 +35,7 @@ const AccountSelector = () => {
     const selectedAccounts: string[] = state?.selectedAccounts ?? []
 
     return <div>
-        <FormControl sx={{ m: 1, width: 200 }} size='small'>
+        <FormControl sx={{ m: 1, width: 200, margin: 0 }} size='small'>
             <InputLabel id="filter-transaction-source-label">{t('account_selection_title')}</InputLabel>
             <Select
                 labelId="filter-transaction-source-select-label"

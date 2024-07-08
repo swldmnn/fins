@@ -32,6 +32,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding: 5rem;
 }
 
@@ -79,28 +80,6 @@ body {
 
 .CardFilters {
   display: flex;
-}
-
-.FinsLogo {
-  height: 2.4rem;
-  width: 2.4rem;
-}
-
-.Header {
-  background-color: var(--color-header);
-  color: var(--color-contrast-0);
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
-  padding: 1rem;
-}
-
-.landingHeader {
-  color: var(--color-contrast-0);
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
-  padding: 1rem;
 }
 
 h1 {
