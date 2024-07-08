@@ -28,7 +28,7 @@ body {
   background: rgba(10, 10, 10, .7);
 }
 
-.landingBox {
+.LandingPage {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,17 +150,6 @@ h3 {
   display: none;
 }
 
-table,
-th,
-td {
-  border: 1px solid var(--color-text);
-}
-
-td {
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
-}
-
-table {
-  border-collapse: collapse;
+.tableHeaderRow {
+  font-weight: bold;
 }

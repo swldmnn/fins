@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../app-context';
 import { useTranslation } from "react-i18next";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
@@ -6,6 +6,7 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typograph
 const TimeRangeSelector = () => {
     const { t } = useTranslation();
     const { state, updateState } = useContext(AppContext)
+    const [selectedYear, updateSelectedYear] = useState('--')
 
     const handleDateInputChange = (event: React.FormEvent<HTMLInputElement>) => {
         const date = new Date(event.currentTarget.value)
@@ -41,6 +42,7 @@ const TimeRangeSelector = () => {
                 state.timeRange.selectedEnd = state.timeRange.end < endDate ? state.timeRange.end : endDate
             }
 
+            updateSelectedYear(selectedValue)
             updateState({ state })
         }
     }
@@ -63,7 +65,7 @@ const TimeRangeSelector = () => {
                         <Select
                             labelId="account-select-label"
                             id="account-select"
-                            value={'--'}
+                            value={selectedYear}
                             label={t('time_range_selection_title')}
                             onChange={handleQuickSelectChange}
                         >

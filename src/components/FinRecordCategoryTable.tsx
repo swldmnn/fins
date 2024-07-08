@@ -1,10 +1,11 @@
-import React, { FunctionComponent, useContext } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import { PropsWithFinRecords } from './FinsCard';
 import { FinRecord } from '../utils/ReportParser';
 import { useTranslation } from 'react-i18next';
 import { getColorByCategory } from '../utils/categoryUtil';
 import { formatNumber } from '../utils/numberUtil';
 import { AppContext } from '../app-context';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 interface TableItem {
     category: string,
@@ -64,40 +65,40 @@ const FinRecordCategoryTable: FunctionComponent<PropsWithFinRecords> = (props) =
 
     const totalsItem = mapFinRecordListToTableItem('cat_total', props.finRecords)
 
-    return <div>
-        <table>
-            <thead className='TableHeaderRow'>
-                <tr>
-                    <td>{t('header_category')}</td>
-                    <td style={{paddingRight: '6rem'}}>{t('header_income_total')}</td>
-                    <td>{t('header_income_avg')} {monthCount}</td>
-                    <td style={{paddingRight: '6rem'}}>{t('header_expense_total')}</td>
-                    <td>{t('header_expense_avg')} {monthCount}</td>
-                    <td style={{paddingRight: '6rem'}}>{t('header_difference')}</td>
-                </tr>
-            </thead>
-            <tbody>
+    return <TableContainer component={Box}>
+        <Table size='small'>
+            <TableHead>
+                <TableRow className='tableHeaderRow'>
+                    <TableCell style={{ textAlign: 'left' }}>{t('header_category')}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{t('header_income_total')}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{t('header_income_avg')} {monthCount}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{t('header_expense_total')}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{t('header_expense_avg')} {monthCount}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{t('header_difference')}</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
                 {tableItems.map((tableItem, i) => {
-                    return <tr key={i}>
-                        <td style={{ backgroundColor: getColorByCategory(tableItem.category), color: 'black' }}>{t(tableItem.category)}</td>
-                        <td style={{ textAlign: 'right' }}>{tableItem.incomeTotal === 0 ? '' : formatNumber(tableItem.incomeTotal)}</td>
-                        <td style={{ textAlign: 'right' }}>{tableItem.incomeAvg === 0 ? '' : formatNumber(tableItem.incomeAvg)}</td>
-                        <td style={{ textAlign: 'right' }}>{tableItem.expenseTotal === 0 ? '' : formatNumber(tableItem.expenseTotal)}</td>
-                        <td style={{ textAlign: 'right' }}>{tableItem.expenseAvg === 0 ? '' : formatNumber(tableItem.expenseAvg)}</td>
-                        <td style={{ textAlign: 'right' }}>{formatNumber(tableItem.incomeTotal + tableItem.expenseTotal)}</td>
-                    </tr>
+                    return <TableRow key={i}>
+                        <TableCell style={{ backgroundColor: getColorByCategory(tableItem.category), color: 'black' }}>{t(tableItem.category)}</TableCell>
+                        <TableCell style={{ textAlign: 'right' }}>{tableItem.incomeTotal === 0 ? '' : formatNumber(tableItem.incomeTotal)}</TableCell>
+                        <TableCell style={{ textAlign: 'right' }}>{tableItem.incomeAvg === 0 ? '' : formatNumber(tableItem.incomeAvg)}</TableCell>
+                        <TableCell style={{ textAlign: 'right' }}>{tableItem.expenseTotal === 0 ? '' : formatNumber(tableItem.expenseTotal)}</TableCell>
+                        <TableCell style={{ textAlign: 'right' }}>{tableItem.expenseAvg === 0 ? '' : formatNumber(tableItem.expenseAvg)}</TableCell>
+                        <TableCell style={{ textAlign: 'right' }}>{formatNumber(tableItem.incomeTotal + tableItem.expenseTotal)}</TableCell>
+                    </TableRow>
                 })}
-                <tr className='TableHeaderRow'>
-                    <td>{t(totalsItem.category)}</td>
-                    <td style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeTotal)}</td>
-                    <td style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeAvg)}</td>
-                    <td style={{ textAlign: 'right' }}>{formatNumber(totalsItem.expenseTotal)}</td>
-                    <td style={{ textAlign: 'right' }}>{formatNumber(totalsItem.expenseAvg)}</td>
-                    <td style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeTotal + totalsItem.expenseTotal)}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                <TableRow className='tableHeaderRow' sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableCell>{t(totalsItem.category)}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeTotal)}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeAvg)}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.expenseTotal)}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.expenseAvg)}</TableCell>
+                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeTotal + totalsItem.expenseTotal)}</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </TableContainer>
 }
 
 export default FinRecordCategoryTable;
