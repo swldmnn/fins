@@ -3,62 +3,63 @@ import Header from './components/Header';
 import FinRecordList from './components/FinRecordList';
 import GlobalSettings from './components/GlobalSettings';
 import "./i18n/config";
-import Card from './components/Card';
+import FinsCard from './components/FinsCard';
 import { useTranslation } from 'react-i18next';
 import FinRecordCategoryTable from './components/FinRecordCategoryTable';
 import { useContext } from 'react';
 import { AppContext } from './app-context';
 import FileChooser from './components/FileChooser';
-import FinsLogo from './components/FinsLogo';
 import FinRecordCategoryStackedBarChart from './components/FinRecordCategoryStackedBarChart';
 import FinRecordCategoryLineChart from './components/FinRecordCategoryLineChart';
+import { FinsLogo } from './components/FinsLogo';
+import { Box } from '@mui/material';
 
 function App() {
   const { t } = useTranslation()
   const { state, updateState } = useContext(AppContext)
 
   return (
-    <div className="App">
+    <Box sx={{ bgcolor: 'background.default' }}>
       {state?.finRecords.length === 0 && (
         <div>
           <div className='landingBox'>
             <div style={{ display: 'inline-block' }}>
               <div className="landingHeader">
-                <FinsLogo></FinsLogo>
+                <FinsLogo sx={{ width: '2.4rem', height: '2.4rem' }}></FinsLogo>
                 <span>FINS</span>
               </div>
-              <Card>
-                <FileChooser></FileChooser>
-              </Card>
+              <FinsCard>
+                <FileChooser showFileCount={false}></FileChooser>
+              </FinsCard>
             </div>
           </div>
         </div>)}
       {state!.finRecords.length > 0 && (
         <div>
           <Header />
-          <Card title={t('title_options')}>
+          <FinsCard title={t('title_options')}>
             <GlobalSettings></GlobalSettings>
-          </Card>
+          </FinsCard>
           <div className='cardBox'>
-            <Card title={t('title_category_table')} showFilters={false}>
+            <FinsCard title={t('title_category_table')} showFilters={false}>
               <FinRecordCategoryTable finRecords={[]} />
-            </Card>
-            <Card title={t('title_category_stack')} showFilters={false}>
+            </FinsCard>
+            <FinsCard title={t('title_category_stack')} showFilters={false}>
               <FinRecordCategoryStackedBarChart finRecords={[]} />
-            </Card>
+            </FinsCard>
             <div style={{ width: '100%' }}>
-              <Card title={t('title_category_line')} showFilters={true}>
+              <FinsCard title={t('title_category_line')} showFilters={true}>
                 <FinRecordCategoryLineChart finRecords={[]} />
-              </Card>
+              </FinsCard>
             </div>
             <div style={{ width: '100%' }}>
-              <Card title={t('title_records')} showFilters={true}>
+              <FinsCard title={t('title_records')} showFilters={true}>
                 <FinRecordList finRecords={[]}></FinRecordList>
-              </Card>
+              </FinsCard>
             </div>
           </div>
         </div>)}
-    </div>
+    </Box>
   );
 }
 

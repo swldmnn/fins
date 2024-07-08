@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useContext } from 'react';
-import { PropsWithFinRecords } from './Card';
+import { PropsWithFinRecords } from './FinsCard';
 import { FinRecord } from '../utils/ReportParser';
 import { useTranslation } from 'react-i18next';
 import { getColorByCategory } from '../utils/categoryUtil';

@@ -1,13 +1,14 @@
-import React from 'react';
-import logo from '../resources/images/fins_logo.svg';
-import FinsLogo from './FinsLogo';
+import { AppBar, Toolbar, Typography } from '@mui/material';
+import { FinsLogo } from './FinsLogo';
 
 function Header() {
   return (
-    <header className="Header">
-      <FinsLogo></FinsLogo>
-      <span>FINS</span>
-    </header>
+    <AppBar position='static' className="Header" enableColorOnDark sx={{ bgcolor: 'primary.dark' }}>
+      <Toolbar>
+        <FinsLogo color='primary' sx={{ width: '2.4rem', height: '2.4rem' }}></FinsLogo>
+        <Typography variant="h1" color="primary">FINS</Typography>
+      </Toolbar>
+    </AppBar>
   );
 }
 

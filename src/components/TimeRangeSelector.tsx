@@ -1,6 +1,7 @@
-import React, { ChangeEvent, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../app-context';
 import { useTranslation } from "react-i18next";
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 
 const TimeRangeSelector = () => {
     const { t } = useTranslation();
@@ -21,10 +22,10 @@ const TimeRangeSelector = () => {
         }
     }
 
-    const handleQuickSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = event.currentTarget.value
+    const handleQuickSelectChange = (event: SelectChangeEvent) => {
+        const selectedValue = event.target.value
 
-        if(selectedValue === '--') {
+        if (selectedValue === '--') {
             return
         }
 
@@ -55,38 +56,45 @@ const TimeRangeSelector = () => {
 
     return (
         <div>
-            <div><h3>{t('time_range_selection_title')}</h3></div>
             {start && end && (<div>
                 <div>
-                    <span>{t('time_range_quickselect')}</span>
-                <select onChange={handleQuickSelectChange}>
-                    <option value='--' key='timerange_quickselect_no'>--</option>
-                    <option value='all' key='timerange_quickselect_all'>{t('time_range_all')}</option>
-                    {
-                        years.map(year => {
-                            return <option value={year} key={year}>{year}</option>
-                        })
-                    }
-                </select>
+                    <FormControl fullWidth size='small'>
+                        <InputLabel id="account-select-label">{t('time_range_selection_title')}</InputLabel>
+                        <Select
+                            labelId="account-select-label"
+                            id="account-select"
+                            value={'--'}
+                            label={t('time_range_selection_title')}
+                            onChange={handleQuickSelectChange}
+                        >
+                            <MenuItem value={'--'}>--</MenuItem>
+                            <MenuItem value={'all'}>{t('time_range_all')}</MenuItem>
+                            {
+                                years.map(year => {
+                                    return <MenuItem value={year} key={year}>{year}</MenuItem>
+                                })
+                            }
+                        </Select>
+                    </FormControl>
                 </div>
                 <div>
-                <input
-                    type="date"
-                    id="timeRangeStart"
-                    value={getDateInputString(selectedStart)}
-                    min={getDateInputString(start)}
-                    max={getDateInputString(selectedEnd)}
-                    onChange={handleDateInputChange}
-                />
-                <span> - </span>
-                <input
-                    type="date"
-                    id="timeRangeEnd"
-                    value={getDateInputString(selectedEnd)}
-                    min={getDateInputString(selectedStart)}
-                    max={getDateInputString(end)}
-                    onChange={handleDateInputChange}
-                />
+                    <input
+                        type="date"
+                        id="timeRangeStart"
+                        value={getDateInputString(selectedStart)}
+                        min={getDateInputString(start)}
+                        max={getDateInputString(selectedEnd)}
+                        onChange={handleDateInputChange}
+                    />
+                    <span> - </span>
+                    <input
+                        type="date"
+                        id="timeRangeEnd"
+                        value={getDateInputString(selectedEnd)}
+                        min={getDateInputString(selectedStart)}
+                        max={getDateInputString(end)}
+                        onChange={handleDateInputChange}
+                    />
                 </div>
             </div>)}
             {(!state?.timeRange.start || !state?.timeRange.end) && (<div>

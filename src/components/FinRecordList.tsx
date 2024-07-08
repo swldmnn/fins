@@ -2,7 +2,7 @@ import { FunctionComponent, useContext } from 'react';
 import { AppContext } from '../app-context';
 import { getColorByCategory } from '../utils/categoryUtil';
 import { useTranslation } from 'react-i18next';
-import { PropsWithFinRecords } from './Card';
+import { PropsWithFinRecords } from './FinsCard';
 import { formatNumber } from '../utils/numberUtil';
 
 const FinRecordList: FunctionComponent<PropsWithFinRecords> = (props) => {

@@ -4,15 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AppContextProvider } from './app-context-provider';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme } from '@mui/material';
+import { theme } from './muiTheme';
+
+const appTheme = createTheme(theme)
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <AppContextProvider>
-      <App />
-    </AppContextProvider>
+    <ThemeProvider theme={appTheme}>
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

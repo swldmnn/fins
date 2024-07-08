@@ -1,7 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { getCategoryIds, getSourcesByCategories } from '../utils/categoryUtil';
 import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent, Slider, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { FinRecordFilters } from './Card';
+import { FinRecordFilters } from './FinsCard';
+import { Add, Remove } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 enum TransactionType {
     credit = "credit",
@@ -25,6 +27,8 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
             },
         },
     }
+
+    const { t } = useTranslation()
 
     const onCategoryChange = (event: SelectChangeEvent<string[]>) => {
         const {
@@ -76,45 +80,46 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
             value={filters.transactionTypes}
             onChange={onTransactionTypeChange}
             aria-label="credit/debit"
+            size='small'
         >
             <ToggleButton value="credit" aria-label="credit">
-                +
+                <Add></Add>
             </ToggleButton>
             <ToggleButton value="debit" aria-label="debit">
-                -
+                <Remove></Remove>
             </ToggleButton>
         </ToggleButtonGroup>
 
-        <FormControl sx={{ m: 1, width: 200 }}>
-            <InputLabel id="filter-category-label">Category</InputLabel>
+        <FormControl sx={{ m: 1, width: 200 }} size='small'>
+            <InputLabel id="filter-category-label">{t('select_category')}</InputLabel>
             <Select
                 labelId="filter-category-select-label"
                 id="filter-category-select"
                 multiple
                 value={filters.categories}
                 onChange={onCategoryChange}
-                input={<OutlinedInput label="Tag" />}
-                renderValue={(selected) => selected.join(', ')}
+                input={<OutlinedInput label={t('select_category')} />}
+                renderValue={(selected) => selected.map(entry => t(entry)).join(', ')}
                 MenuProps={MenuProps}
             >
                 {allCategories.map((category) => (
                     <MenuItem key={category} value={category}>
                         <Checkbox checked={filters.categories.indexOf(category) > -1} />
-                        <ListItemText primary={category} />
+                        <ListItemText primary={t(category)} />
                     </MenuItem>
                 ))}
             </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: 200 }}>
-            <InputLabel id="filter-transaction-source-label">Source</InputLabel>
+        <FormControl sx={{ m: 1, width: 200 }} size='small' disabled={!filters.categories.length}>
+            <InputLabel id="filter-transaction-source-label">{t('select_source')}</InputLabel>
             <Select
                 labelId="filter-transaction-source-select-label"
                 id="filter-transaction-source-select"
                 multiple
                 value={filters.transferSources}
                 onChange={onTransferSourceChange}
-                input={<OutlinedInput label="Tag" />}
+                input={<OutlinedInput label={t('select_source')} />}
                 renderValue={(selected) => selected.join(', ')}
                 MenuProps={MenuProps}
             >
@@ -127,13 +132,13 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
             </Select>
         </FormControl>
 
-
-        <Slider sx={{ width: 100 }}
+        <Slider sx={{ width: 100, margin: '8px' }}
             getAriaLabel={() => 'Temperature range'}
             value={filters.amountLimit}
             onChange={onAmountLimitChange}
             valueLabelDisplay="auto"
             max={10000}
+            size='small'
         />
     </div>
 }

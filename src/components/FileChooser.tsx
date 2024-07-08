@@ -1,8 +1,9 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { FunctionComponent, useContext, useRef, useState } from "react";
 import { AppContext } from "../app-context";
 import { FinRecord, VrPdfParser } from "../utils/ReportParser";
 import { useTranslation } from "react-i18next";
 import LoadingIndicator from "./LoadingIndicator";
+import { Button } from "@mui/material";
 
 
 declare module "react" {
@@ -11,7 +12,11 @@ declare module "react" {
   }
 }
 
-const FileChooser = () => {
+interface FileChooserProps {
+  showFileCount: boolean
+}
+
+const FileChooser: FunctionComponent<FileChooserProps> = (props) => {
 
   const { t } = useTranslation();
   const { state, updateState } = useContext(AppContext)
@@ -62,9 +67,7 @@ const FileChooser = () => {
   return (
     <div>
       <div className="FileChooser">
-        <button className="FileChooserButton" onClick={handleClick}>
-          {t('open_files')}
-        </button>
+        <Button variant="contained" onClick={handleClick}>{t('open_files')}</Button>
         <input
           type="file"
           onChange={handleChange}
@@ -72,7 +75,7 @@ const FileChooser = () => {
           className="hidden"
           webkitdirectory=""
         />
-        <span>{`${state?.files.length} ${t('opened')}`}</span>
+        {props.showFileCount && (<span>{`${state?.files.length} ${t('opened')}`}</span>)}
       </div>
       {percentLoaded >= 0 && (
         <LoadingIndicator percent={percentLoaded}></LoadingIndicator>

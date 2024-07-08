@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../app-context';
 import FileChooser from './FileChooser';
 import TimeRangeSelector from './TimeRangeSelector';
@@ -8,7 +8,7 @@ const GlobalSettings = () => {
     const { state, updateState } = useContext(AppContext)
 
     return <div className="GlobalSettings">
-        <FileChooser></FileChooser>
+        <FileChooser showFileCount={true}></FileChooser>
         <div className="Bumper"></div>
         <TimeRangeSelector></TimeRangeSelector>
         <div className="Bumper"></div>

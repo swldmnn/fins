@@ -1,5 +1,6 @@
 import pdfToText from 'react-pdftotext'
 import { getCategoryAndSource } from './categoryUtil'
+import { hashCode } from './stringUtil'
 
 enum FinRecordType {
     Transaction,
@@ -29,7 +30,7 @@ export class VrPdfParser implements RecordParser {
 
         const headerEnd = pdfText.search('alter Kontostand')
         const contentEnd = pdfText.search('neuer Kontostand')
-        
+
         const contentText = pdfText.substring(headerEnd, contentEnd)
         const headerText = pdfText.substring(0, headerEnd)
         const dateText = headerText.match('\\d+\\/\\d{4}')?.[0]
@@ -66,6 +67,7 @@ export class VrPdfParser implements RecordParser {
         dateText: string,
         transactionMarker: string
     ): FinRecord {
+        const hashText = `[#${hashCode(transactionText)}]`
         const amountText = transactionText.match('\\d+(\\.\\d{3})*,\\d{2}\\s[SH]')?.[0]
         const dayMonthText = transactionMarker.match('\\d{2}\\.\\d{2}')?.[0]
         const yearText = dateText.split('/')?.[1]
@@ -83,10 +85,10 @@ export class VrPdfParser implements RecordParser {
             type = FinRecordType.Transaction
             amount = Number(amountText.slice(0, -2).replaceAll('.', '').replaceAll(',', '.')) * (amountText?.endsWith('S') ? -1 : 1)
             description = transactionText.substring(descStart).trim()
-            classification = transactionText.substring(transactionMarker.length-1, amountStart).trim()
+            classification = transactionText.substring(transactionMarker.length - 1, amountStart).trim()
         }
 
-        const {category, source} = getCategoryAndSource(transactionText)
+        const { category, source } = getCategoryAndSource(`${transactionText}${hashText}`)
 
         return {
             type,
@@ -94,7 +96,7 @@ export class VrPdfParser implements RecordParser {
             date: new Date(`${yyyy}-${mm}-${dd}Z`),
             amount: amount,
             source,
-            description: description.length !== 0 ? description : classification,
+            description: `${description.length !== 0 ? description : classification}${hashText}`,
             category,
             classification
         } as FinRecord
@@ -109,7 +111,7 @@ export class VrPdfParser implements RecordParser {
         }
 
         const cutOutEndText = singleSpacedTransactionText.match('Übertrag von Blatt\\s\\d\\s+\\d+(\\.\\d{3})*,\\d{2}\\s[SH]\\s+Wert\\s+Vorgang')?.[0]
-        if(!cutOutEndText) {
+        if (!cutOutEndText) {
             return singleSpacedTransactionText
         }
 
