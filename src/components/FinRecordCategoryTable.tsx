@@ -69,32 +69,32 @@ const FinRecordCategoryTable: FunctionComponent<PropsWithFinRecords> = (props) =
         <Table size='small'>
             <TableHead>
                 <TableRow className='tableHeaderRow'>
-                    <TableCell style={{ textAlign: 'left' }}>{t('header_category')}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{t('header_income_total')}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{t('header_income_avg')} {monthCount}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{t('header_expense_total')}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{t('header_expense_avg')} {monthCount}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{t('header_difference')}</TableCell>
+                    <TableCell>{t('header_category')}</TableCell>
+                    <TableCell align='right'>{t('header_income_total')}</TableCell>
+                    <TableCell align='right'>{t('header_income_avg')} {monthCount}</TableCell>
+                    <TableCell align='right'>{t('header_expense_total')}</TableCell>
+                    <TableCell align='right'>{t('header_expense_avg')} {monthCount}</TableCell>
+                    <TableCell align='right'>{t('header_difference')}</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
                 {tableItems.map((tableItem, i) => {
                     return <TableRow key={i}>
                         <TableCell style={{ backgroundColor: getColorByCategory(tableItem.category), color: 'black' }}>{t(tableItem.category)}</TableCell>
-                        <TableCell style={{ textAlign: 'right' }}>{tableItem.incomeTotal === 0 ? '' : formatNumber(tableItem.incomeTotal)}</TableCell>
-                        <TableCell style={{ textAlign: 'right' }}>{tableItem.incomeAvg === 0 ? '' : formatNumber(tableItem.incomeAvg)}</TableCell>
-                        <TableCell style={{ textAlign: 'right' }}>{tableItem.expenseTotal === 0 ? '' : formatNumber(tableItem.expenseTotal)}</TableCell>
-                        <TableCell style={{ textAlign: 'right' }}>{tableItem.expenseAvg === 0 ? '' : formatNumber(tableItem.expenseAvg)}</TableCell>
-                        <TableCell style={{ textAlign: 'right' }}>{formatNumber(tableItem.incomeTotal + tableItem.expenseTotal)}</TableCell>
+                        <TableCell align='right'>{tableItem.incomeTotal === 0 ? '' : formatNumber(tableItem.incomeTotal)}</TableCell>
+                        <TableCell align='right'>{tableItem.incomeAvg === 0 ? '' : formatNumber(tableItem.incomeAvg)}</TableCell>
+                        <TableCell align='right'>{tableItem.expenseTotal === 0 ? '' : formatNumber(tableItem.expenseTotal)}</TableCell>
+                        <TableCell align='right'>{tableItem.expenseAvg === 0 ? '' : formatNumber(tableItem.expenseAvg)}</TableCell>
+                        <TableCell align='right'>{formatNumber(tableItem.incomeTotal + tableItem.expenseTotal)}</TableCell>
                     </TableRow>
                 })}
                 <TableRow className='tableHeaderRow' sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell>{t(totalsItem.category)}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeTotal)}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeAvg)}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.expenseTotal)}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.expenseAvg)}</TableCell>
-                    <TableCell style={{ textAlign: 'right' }}>{formatNumber(totalsItem.incomeTotal + totalsItem.expenseTotal)}</TableCell>
+                    <TableCell align='right'>{formatNumber(totalsItem.incomeTotal)}</TableCell>
+                    <TableCell align='right'>{formatNumber(totalsItem.incomeAvg)}</TableCell>
+                    <TableCell align='right'>{formatNumber(totalsItem.expenseTotal)}</TableCell>
+                    <TableCell align='right'>{formatNumber(totalsItem.expenseAvg)}</TableCell>
+                    <TableCell align='right'>{formatNumber(totalsItem.incomeTotal + totalsItem.expenseTotal)}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

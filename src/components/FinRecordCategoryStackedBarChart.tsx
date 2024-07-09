@@ -6,6 +6,7 @@ import { getCategoryIds, getColorByCategory } from '../utils/categoryUtil';
 import { AppContext } from '../app-context';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 import CustomTooltip from './CustomTooltip';
+import { Container } from '@mui/material';
 
 interface ChartItem {
     name: string,
@@ -52,7 +53,7 @@ const FinRecordCategoryStackedBarChart: FunctionComponent<PropsWithFinRecords> =
             incomesItem[category] = (getAbsAmount(finRecords))
         })
 
-    return <BarChart
+    return <Container maxWidth="sm"><BarChart
         width={500}
         height={500}
         data={[incomesItem, expensesItem]}
@@ -72,7 +73,7 @@ const FinRecordCategoryStackedBarChart: FunctionComponent<PropsWithFinRecords> =
                 return <Bar dataKey={id} stackId="a" fill={getColorByCategory(id)} key={`bar_${id}`} />
             })
         }
-    </BarChart>
+    </BarChart></Container>
 }
 
 export default FinRecordCategoryStackedBarChart;
