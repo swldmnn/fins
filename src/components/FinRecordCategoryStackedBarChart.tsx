@@ -69,7 +69,7 @@ const FinRecordCategoryStackedBarChart: FunctionComponent<PropsWithFinRecords> =
         <YAxis />
         <Tooltip content={<CustomTooltip />} shared={false} />
         {
-            getCategoryIds().map(id => {
+            getCategoryIds().reverse().map(id => {
                 return <Bar dataKey={id} stackId="a" fill={getColorByCategory(id)} key={`bar_${id}`} />
             })
         }

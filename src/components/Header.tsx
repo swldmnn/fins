@@ -3,11 +3,9 @@ import { FinsLogo } from './FinsLogo';
 
 function Header() {
   return (
-    <AppBar position='static' enableColorOnDark sx={{ bgcolor: 'primary.dark' }}>
-      <Toolbar>
+    <div className='Header'>
         <FinsLogo color='primary' sx={{ width: '10rem', height: '3rem' }}></FinsLogo>
-      </Toolbar>
-    </AppBar>
+        </div>
   );
 }
 

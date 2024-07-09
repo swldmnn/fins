@@ -2,7 +2,7 @@ import { FunctionComponent, useContext } from 'react';
 import { PropsWithFinRecords } from './FinsCard';
 import { FinRecord } from '../utils/ReportParser';
 import { useTranslation } from 'react-i18next';
-import { getColorByCategory } from '../utils/categoryUtil';
+import { getColorByCategory, getSortIndexByCategory } from '../utils/categoryUtil';
 import { formatNumber } from '../utils/numberUtil';
 import { AppContext } from '../app-context';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
@@ -63,18 +63,20 @@ const FinRecordCategoryTable: FunctionComponent<PropsWithFinRecords> = (props) =
             tableItems.push(mapFinRecordListToTableItem(category, finRecords))
         })
 
+    tableItems.sort((a,b) => getSortIndexByCategory(a.category) - getSortIndexByCategory(b.category))
+
     const totalsItem = mapFinRecordListToTableItem('cat_total', props.finRecords)
 
     return <TableContainer component={Box}>
         <Table size='small'>
             <TableHead>
                 <TableRow className='tableHeaderRow'>
-                    <TableCell>{t('header_category')}</TableCell>
-                    <TableCell align='right'>{t('header_income_total')}</TableCell>
-                    <TableCell align='right'>{t('header_income_avg')} {monthCount}</TableCell>
-                    <TableCell align='right'>{t('header_expense_total')}</TableCell>
-                    <TableCell align='right'>{t('header_expense_avg')} {monthCount}</TableCell>
-                    <TableCell align='right'>{t('header_difference')}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}}>{t('header_category')}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{t('header_income_total')}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{t('header_income_avg')} {monthCount}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{t('header_expense_total')}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{t('header_expense_avg')} {monthCount}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{t('header_difference')}</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -89,12 +91,12 @@ const FinRecordCategoryTable: FunctionComponent<PropsWithFinRecords> = (props) =
                     </TableRow>
                 })}
                 <TableRow className='tableHeaderRow' sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                    <TableCell>{t(totalsItem.category)}</TableCell>
-                    <TableCell align='right'>{formatNumber(totalsItem.incomeTotal)}</TableCell>
-                    <TableCell align='right'>{formatNumber(totalsItem.incomeAvg)}</TableCell>
-                    <TableCell align='right'>{formatNumber(totalsItem.expenseTotal)}</TableCell>
-                    <TableCell align='right'>{formatNumber(totalsItem.expenseAvg)}</TableCell>
-                    <TableCell align='right'>{formatNumber(totalsItem.incomeTotal + totalsItem.expenseTotal)}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}}>{t(totalsItem.category)}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{formatNumber(totalsItem.incomeTotal)}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{formatNumber(totalsItem.incomeAvg)}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{formatNumber(totalsItem.expenseTotal)}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{formatNumber(totalsItem.expenseAvg)}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}} align='right'>{formatNumber(totalsItem.incomeTotal + totalsItem.expenseTotal)}</TableCell>
                 </TableRow>
             </TableBody>
         </Table>

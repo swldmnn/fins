@@ -20,12 +20,12 @@ const DashBoardPage = () => {
                 <GlobalSettings></GlobalSettings>
             </FinsCard>
         </Grid>
-        <Grid item xs={7}>
+        <Grid item lg={7} md={12} sm={12} xs={12}>
             <FinsCard title={t('title_category_table')} showFilters={false}>
                 <FinRecordCategoryTable finRecords={[]} />
             </FinsCard>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item lg={5} md={12} sm={12} xs={12}>
             <FinsCard title={t('title_category_stack')} showFilters={false}>
                 <FinRecordCategoryStackedBarChart finRecords={[]} />
             </FinsCard>

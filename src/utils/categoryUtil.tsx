@@ -24,7 +24,7 @@ export function getColorByCategory(categoryId: string): string | undefined {
 }
 
 export function getCategoryIds(): string[] {
-    return config.categories.map(category => category.id).sort()
+    return config.categories.map(category => category.id).sort((a, b) => getSortIndexByCategory(a) - getSortIndexByCategory(b))
 }
 
 export function getSourcesByCategories(categories: string[]): string[] {
@@ -33,4 +33,9 @@ export function getSourcesByCategories(categories: string[]): string[] {
         .flatMap(category => category.transfer_sources)
         .map(transferSource => transferSource.name)
         .sort()
+}
+
+export function getSortIndexByCategory(categoryId: string): number {
+    return config.categories
+        .find(category => category.id === categoryId)?.sortIndex ?? -1
 }
