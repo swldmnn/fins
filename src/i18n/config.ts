@@ -48,7 +48,7 @@ i18n
           header_income_avg: "⌀",
           header_expense_total: "Expenses",
           header_expense_avg: "⌀",
-          header_difference: "Difference",
+          header_difference: "∆",
           item_count: "#",
           total_amount: "∑",
           expenses: "Expenses",
@@ -56,7 +56,8 @@ i18n
           min: "Min",
           max: "Max",
           from: "From",
-          to: "To"
+          to: "To",
+          total: "Total"
         },
       },
       de: {
@@ -96,7 +97,7 @@ i18n
           header_income_avg: "⌀",
           header_expense_total: "Ausgaben",
           header_expense_avg: "⌀",
-          header_difference: "Differenz",
+          header_difference: "∆",
           item_count: "#",
           total_amount: "∑",
           expenses: "Ausgaben",
@@ -104,7 +105,8 @@ i18n
           min: "Min",
           max: "Max",
           from: "Von",
-          to: "Bis"
+          to: "Bis",
+          total: "Summe"
         },
       },
     },

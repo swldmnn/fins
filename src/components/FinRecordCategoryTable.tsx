@@ -91,7 +91,7 @@ const FinRecordCategoryTable: FunctionComponent<PropsWithFinRecords> = (props) =
                     </TableRow>
                 })}
                 <TableRow className='tableHeaderRow' sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                    <TableCell sx={{fontWeight: 'bold'}}>{t(totalsItem.category)}</TableCell>
+                    <TableCell sx={{fontWeight: 'bold'}}>{t('total')}</TableCell>
                     <TableCell sx={{fontWeight: 'bold'}} align='right'>{formatNumber(totalsItem.incomeTotal)}</TableCell>
                     <TableCell sx={{fontWeight: 'bold'}} align='right'>{formatNumber(totalsItem.incomeAvg)}</TableCell>
                     <TableCell sx={{fontWeight: 'bold'}} align='right'>{formatNumber(totalsItem.expenseTotal)}</TableCell>
