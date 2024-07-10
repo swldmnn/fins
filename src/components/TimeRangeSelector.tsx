@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useContext, useState } from 'react';
 import { AppContext } from '../app-context';
 import { useTranslation } from "react-i18next";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 
 const TimeRangeSelector = () => {
     const { t } = useTranslation();
