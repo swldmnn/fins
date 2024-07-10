@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from 'react';
+import React, { ChangeEvent, FocusEvent, FocusEventHandler, FunctionComponent, KeyboardEvent, useState } from 'react';
 import { getCategoryIds, getSourcesByCategories } from '../utils/categoryUtil';
-import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent, Slider, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent, Slider, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { FinRecordFilters } from './FinsCard';
 import { Add, Remove } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +16,6 @@ interface FilterBarProps extends React.PropsWithChildren {
 }
 
 const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }) => {
-
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
     const MenuProps = {
@@ -29,6 +28,8 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
     }
 
     const { t } = useTranslation()
+    const [minAmount, setMinAmount] = useState(-1)
+    const [maxAmount, setMaxAmount] = useState(-1)
 
     const onCategoryChange = (event: SelectChangeEvent<string[]>) => {
         const {
@@ -63,13 +64,43 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
         }))
     }
 
-    const onAmountLimitChange = (event: Event, newValue: number | number[]) => {
+    const onAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const amount = event.target.value ? Number(event.target.value) : -1
+        if (event.target.id === 'minAmount-input') {
+            setMinAmount(amount)
+        }
+        if (event.target.id === 'maxAmount-input') {
+            setMaxAmount(amount)
+        }
+    }
 
-        const amountLimit = typeof newValue === 'number' ? newValue : newValue[0]
+    const onAmountBlur = (event: FocusEvent<HTMLInputElement>) => {
+        if (event.target.id === 'minAmount-input') {
+            updateFilters(prevFilters => ({
+                ...prevFilters, minAmount
+            }))
+        }
+        if (event.target.id === 'maxAmount-input') {
+            updateFilters(prevFilters => ({
+                ...prevFilters, maxAmount
+            }))
+        }
+    }
 
-        updateFilters(prevFilters => ({
-            ...prevFilters, amountLimit
-        }))
+    const onAmountMinKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            updateFilters(prevFilters => ({
+                ...prevFilters, minAmount
+            }))
+        }
+    }
+
+    const onAmountMaxKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            updateFilters(prevFilters => ({
+                ...prevFilters, maxAmount
+            }))
+        }
     }
 
     const allCategories = getCategoryIds()
@@ -83,14 +114,36 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
             size='small'
         >
             <ToggleButton value="credit" aria-label="credit">
-                <Add></Add>
+                <Add />
             </ToggleButton>
             <ToggleButton value="debit" aria-label="debit">
-                <Remove></Remove>
+                <Remove />
             </ToggleButton>
         </ToggleButtonGroup>
 
-        <FormControl sx={{ m: 1, width: 200, marginTop: 0 }} size='small'>
+        <TextField
+            id="minAmount-input"
+            label={t('min')}
+            variant="outlined"
+            size='small'
+            sx={{ marginLeft: '8px', width: 110 }}
+            type='number'
+            onChange={onAmountChange}
+            onBlur={onAmountBlur}
+            onKeyDown={onAmountMinKeyDown} />
+
+        <TextField
+            id="maxAmount-input"
+            label={t('max')}
+            variant="outlined"
+            size='small'
+            sx={{ marginLeft: '8px', width: 110 }}
+            type='number'
+            onChange={onAmountChange}
+            onBlur={onAmountBlur}
+            onKeyDown={onAmountMaxKeyDown} />
+
+        <FormControl sx={{ m: 1, width: 150, marginTop: 0, marginRight: 0 }} size='small'>
             <InputLabel id="filter-category-label">{t('select_category')}</InputLabel>
             <Select
                 labelId="filter-category-select-label"
@@ -111,7 +164,7 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
             </Select>
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: 200, marginTop: 0 }} size='small' disabled={!filters.categories.length}>
+        <FormControl sx={{ m: 1, width: 150, marginTop: 0 }} size='small' disabled={!filters.categories.length}>
             <InputLabel id="filter-transaction-source-label">{t('select_source')}</InputLabel>
             <Select
                 labelId="filter-transaction-source-select-label"
@@ -131,15 +184,6 @@ const FilterBar: FunctionComponent<FilterBarProps> = ({ filters, updateFilters }
                 ))}
             </Select>
         </FormControl>
-
-        <Slider sx={{ width: 100, marginLeft: '1rem' }}
-            getAriaLabel={() => 'Temperature range'}
-            value={filters.amountLimit}
-            onChange={onAmountLimitChange}
-            valueLabelDisplay="auto"
-            max={10000}
-            size='small'
-        />
     </div>
 }
 

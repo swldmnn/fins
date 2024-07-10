@@ -13,7 +13,8 @@ export interface FinRecordFilters {
     categories: string[],
     transferSources: string[],
     transactionTypes: TransactionType[],
-    amountLimit: number,
+    minAmount: number,
+    maxAmount: number,
 }
 
 interface FinsCardProps extends React.PropsWithChildren {
@@ -29,7 +30,13 @@ export interface PropsWithFinRecords extends React.PropsWithChildren {
 const FinsCard: FunctionComponent<FinsCardProps> = (props) => {
 
     const { state, updateState } = useContext(AppContext)
-    const [filters, updateFilters] = useState(props.filterPresets ?? { categories: [], transferSources: [], transactionTypes: [TransactionType.credit, TransactionType.debit], amountLimit: 0 })
+    const [filters, updateFilters] = useState(props.filterPresets ?? {
+        categories: [],
+        transferSources: [],
+        transactionTypes: [TransactionType.credit, TransactionType.debit],
+        minAmount: -1,
+        maxAmount: -1
+    })
 
     const matchesTransactionTypes = (finRecord: FinRecord, transactionTypes: TransactionType[]): boolean => {
         const transactionType = finRecord.amount >= 0
@@ -43,7 +50,8 @@ const FinsCard: FunctionComponent<FinsCardProps> = (props) => {
         .filter(finRecord => matchesTransactionTypes(finRecord, filters.transactionTypes))
         .filter(finRecord => !filters.categories.length || filters.categories.includes(finRecord.category))
         .filter(finRecord => !filters.transferSources.length || (finRecord.source && filters.transferSources.includes(finRecord.source)))
-        .filter(finRecord => Math.abs(finRecord.amount) >= filters.amountLimit)
+        .filter(finRecord => filters.minAmount < 0 || Math.abs(finRecord.amount) >= filters.minAmount)
+        .filter(finRecord => filters.maxAmount < 0 || Math.abs(finRecord.amount) <= filters.maxAmount)
 
     const childrenWithFinRecoreds = React.Children.map(props.children, child => {
         if (React.isValidElement<PropsWithFinRecords>(child)) {

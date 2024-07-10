@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import { AppContext } from '../app-context';
 import { useTranslation } from "react-i18next";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
 
 const TimeRangeSelector = () => {
     const { t } = useTranslation();
     const { state, updateState } = useContext(AppContext)
     const [selectedYear, updateSelectedYear] = useState('--')
 
-    const handleDateInputChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const handleDateInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const date = new Date(event.currentTarget.value)
         const targetId = (event.currentTarget.id)
 
@@ -59,8 +59,8 @@ const TimeRangeSelector = () => {
     return (
         <div>
             {start && end && (<div>
-                <div>
-                    <FormControl fullWidth size='small'>
+                <div style={{ display: 'flex' }}>
+                    <FormControl sx={{ width: 150 }} size='small'>
                         <InputLabel id="account-select-label">{t('time_range_selection_title')}</InputLabel>
                         <Select
                             labelId="account-select-label"
@@ -78,25 +78,43 @@ const TimeRangeSelector = () => {
                             }
                         </Select>
                     </FormControl>
-                </div>
-                <div>
-                    <input
-                        type="date"
+
+                    <TextField
+                        InputLabelProps={{ shrink: true }}
                         id="timeRangeStart"
+                        label={t('from')}
+                        variant="outlined"
+                        size='small'
+                        sx={{ marginLeft: '8px', width: 150 }}
+                        type='date'
                         value={getDateInputString(selectedStart)}
-                        min={getDateInputString(start)}
-                        max={getDateInputString(selectedEnd)}
+                        InputProps={{
+                            inputProps: {
+                                min: getDateInputString(start),
+                                max: getDateInputString(selectedEnd)
+                            }
+                        }}
                         onChange={handleDateInputChange}
                     />
-                    <span> - </span>
-                    <input
-                        type="date"
+
+                    <TextField
+                        InputLabelProps={{ shrink: true }}
                         id="timeRangeEnd"
+                        label={t('to')}
+                        variant="outlined"
+                        size='small'
+                        sx={{ marginLeft: '8px', width: 150 }}
+                        type='date'
                         value={getDateInputString(selectedEnd)}
-                        min={getDateInputString(selectedStart)}
-                        max={getDateInputString(end)}
+                        InputProps={{
+                            inputProps: {
+                                min: getDateInputString(selectedStart),
+                                max: getDateInputString(end)
+                            }
+                        }}
                         onChange={handleDateInputChange}
                     />
+
                 </div>
             </div>)}
             {(!state?.timeRange.start || !state?.timeRange.end) && (<div>

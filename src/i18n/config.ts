@@ -26,8 +26,6 @@ i18n
           cat_various: "Various",
           cat_unknown: "Unknown",
           cat_investments: "Investments",
-          cat_total: "Total",
-          total_amount: "∑",
           open_files: "Open files",
           opened: "opened",
           account_selection_title: "Accounts",
@@ -52,8 +50,13 @@ i18n
           header_expense_avg: "⌀",
           header_difference: "Difference",
           item_count: "#",
+          total_amount: "∑",
           expenses: "Expenses",
-          incomes: "Incomes"
+          incomes: "Incomes",
+          min: "Min",
+          max: "Max",
+          from: "From",
+          to: "To"
         },
       },
       de: {
@@ -71,8 +74,6 @@ i18n
           cat_various: "Sonstiges",
           cat_unknown: "Nicht zugeordnet",
           cat_investments: "Investitionen",
-          cat_total: "Summe",
-          total_amount: "∑",
           open_files: "Dateien öffnen",
           opened: "geöffnet",
           account_selection_title: "Konten",
@@ -97,8 +98,13 @@ i18n
           header_expense_avg: "⌀",
           header_difference: "Differenz",
           item_count: "#",
+          total_amount: "∑",
           expenses: "Ausgaben",
-          incomes: "Einnahmen"
+          incomes: "Einnahmen",
+          min: "Min",
+          max: "Max",
+          from: "Von",
+          to: "Bis"
         },
       },
     },

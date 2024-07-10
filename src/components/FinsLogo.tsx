@@ -2,11 +2,11 @@ import { createSvgIcon } from '@mui/material';
 
 export const FinsLogo = createSvgIcon(
   <svg xmlns="http://www.w3.org/2000/svg"
-     width="4.95in" height="1.15667in"
-     viewBox="0 0 1485 347">
-  <path id="Selection"
-        fill="currentColor" stroke="none" stroke-width="0"
-        d="M 1258.00,224.00
+    width="4.95in" height="1.15667in"
+    viewBox="0 0 1485 347">
+    <path id="Selection"
+      fill="currentColor" stroke="none" strokeWidth="0"
+      d="M 1258.00,224.00
            C 1258.71,232.41 1263.59,246.99 1266.80,255.00
              1279.66,287.06 1304.97,316.38 1339.00,326.56
              1351.76,330.38 1356.13,330.06 1369.00,330.00
@@ -299,6 +299,6 @@ export const FinsLogo = createSvgIcon(
            C 335.00,246.00 334.00,246.00 334.00,246.00
              334.00,246.00 335.00,247.00 335.00,247.00
              335.00,247.00 335.00,246.00 335.00,246.00 Z" />
-</svg>,
+  </svg>,
   'FinsLogo'
 )
