@@ -1,0 +1,109 @@
+{
+    "categories": [
+        {
+            "id": "cat_investments",
+            "sortIndex": 120,
+            "color": "#948979",
+            "transfer_sources": [
+                {
+                    "name": "Investment1",
+                    "key_phrases": [
+                        "Inv1"
+                    ]
+                },
+                {
+                    "name": "Investment2",
+                    "key_phrases": [
+                        "Inv2"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cat_salary",
+            "color": "#A1DD70",
+            "sortIndex": 10,
+            "transfer_sources": [
+                {
+                    "name": "Employer",
+                    "key_phrases": [
+                        "Sal1"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cat_savings",
+            "color": "#80C4E9",
+            "sortIndex": 90,
+            "transfer_sources": [
+                {
+                    "name": "mySavings",
+                    "key_phrases": [
+                        "Sav1"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cat_account_savings",
+            "color": "#1679AB",
+            "sortIndex": 80,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_debt",
+            "color": "#EE4E4E",
+            "sortIndex": 100,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_insurance",
+            "color": "#8E3E63",
+            "sortIndex": 70,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_housing",
+            "color": "#FFF455",
+            "sortIndex": 40,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_kids",
+            "color": "#94FFD8",
+            "sortIndex": 20,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_car",
+            "color": "#D2649A",
+            "sortIndex": 60,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_communication",
+            "color": "#F6995C",
+            "sortIndex": 50,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_various",
+            "color": "#BACD92",
+            "sortIndex": 110,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_living",
+            "color": "#FFC700",
+            "sortIndex": 30,
+            "transfer_sources": []
+        },
+        {
+            "id": "cat_unknown",
+            "color": "#344955",
+            "sortIndex": 999,
+            "transfer_sources": []
+        }
+    ]
+}
