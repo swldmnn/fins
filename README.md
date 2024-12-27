@@ -13,6 +13,7 @@ Currently only works with reports from german bank "Volksbank"
 * To customize categories etc. edit file `config.json`
 
 ---------------------
+this app was created with the create react app scripts:
 
 # Getting Started with Create React App
 
