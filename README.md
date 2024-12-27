@@ -1,6 +1,5 @@
 # FINS: Finance Inspector
 a simple react app to parse and visualize PDF finance reports.
-Currently only works with reports from german bank "Volksbank"
 
 ## Get started
 ```
