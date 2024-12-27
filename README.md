@@ -1,3 +1,19 @@
+# FINS: Finance Inspector
+a simple react app to parse and visualize PDF finance reports.
+Currently only works with reports from german bank "Volksbank"
+
+## Get started
+```
+>> npm install
+>> npm start
+```
+
+* After App has started, click "open files" and select the folder in which your PDF files are located.
+  * There is a sample PDF in folder "samples"
+* To customize categories etc. edit file `config.json`
+
+---------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
