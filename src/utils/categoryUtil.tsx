@@ -1,7 +1,6 @@
-import config from '../config.json'
+import config from './configUtil'
 
 export function getCategoryAndSource(recordText: string): { category: string, source: string | undefined } {
-
     let category = 'cat_unknown'
     let source = undefined
 
