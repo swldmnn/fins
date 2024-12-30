@@ -7,9 +7,9 @@ a simple react app to parse and visualize PDF finance reports.
 >> npm start
 ```
 
-* After App has started, click "open files" and select the folder in which your PDF files are located.
+* After the App has started, click "open files" and select the folder in which your PDF files are located to upload the files to the app.
   * There is a sample PDF in folder "samples"
-* To customize categories etc. edit file `config.json`
+* To customize categories etc. edit file `config.json` or put a customized copy in `public/conf/config.json`
 
 ---------------------
 this app was created with the create react app scripts:
