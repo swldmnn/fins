@@ -18,7 +18,7 @@ type TransferSource = {
 let config = {} as Configuration
 
 try {
-    const response = await fetch(`${process.env.PUBLIC_URL}/conf/config.json`)
+    const response = await fetch(`/conf/config.json`)
     const data = await response.json()
     console.log('Using custom config..')
     config = data as Configuration
